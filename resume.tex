@@ -3,20 +3,31 @@
 % Imports
 \usepackage[utf8]{inputenc}
 
-\usepackage{helvet}
-\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+%\usepackage{helvet}
+%\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+
+\usepackage[defaultfam,tabular,lining]{montserrat} %% Option 'defaultfam'
+%% only if the base font of the document is to be sans serif
 \usepackage[T1]{fontenc}
+\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}}
+
+%\usepackage[T1]{fontenc}
+\usepackage{vwcol}  
 
 
 \usepackage{parskip}[skip=0.5] % adds space between paragraphs, and also aligns items left
 \usepackage{tikz} % for shapes and fancy graphics
+\usetikzlibrary{fit}
 
 \usepackage{calc} % for subtracting lengths/widths
 
 \usepackage{xparse}
 
 % TODO: reconsider margins
-\usepackage[a4paper,margin=0.5in]{geometry} %a4paper sets margins, can add showframe to display guidelines
+
+\def \margin{0.5in}
+
+\usepackage[a4paper,margin=\margin]{geometry} %a4paper sets margins, can add showframe to display guidelines
 
 \pagenumbering{gobble}
 
@@ -30,6 +41,8 @@
 \def \primarycolor   {spacecadet}
 \def \secondarycolor {darkslategray}
 \def \tertiarycolor  {airforceblue} % may use a color just a touch lighter
+
+\definecolor{light-gray}{gray}{0.925}
 
 \def \titlerectmin{0.15cm}
 \def \titlerectmax{0.35cm}
@@ -74,21 +87,37 @@
 
 % Misc. Commands
 
+\def \headerheight{2in}
+%\setlength{\columnwidth}{0.75\paperwidth-0.4\margin}
+%\setlength{\columnsep}{0.25in}
+\usepackage{lipsum}
 
 \begin{document}
 
 %\parskip=0.75em
+\begin{tikzpicture}[overlay, xshift = -\margin, yshift=-\headerheight + \margin*2 ]
 
-\begin{center}
+\coordinate (dm1) at (0,0);
+\coordinate (dm2) at (\paperwidth,\headerheight);
+\node[rectangle,fill=light-gray] [fit=(dm1) (dm2)] (headerbx) {};
+\node[align=center,font=\large] at (headerbx.center) {
+    \begin{minipage}{\linewidth}
+        \vskip \margin
+        \begin{vwcol}[widths={0.7,0.3},justify=flush,sep=1cm,rule=1pt,indent=0em] 
+            %\lipsum[1]
+            {\LARGE \textbf{NOAH E WOLFE}} \\[0.5em]
+            {\small ASTROPHYSICS | ENVIRONMENTAL JUSTICE} \\
+            \textbf{T} \ \ \  704 998 1322 \\
+            \textbf{1} \ \ \ newolfe@ncsu.edu \\
+            \textbf{2} \ \ \ noah@scivir.org
+        \end{vwcol}
+    \end{minipage}
+   
+};
 
+\end{tikzpicture}
 
-
-{\LARGE \textbf{Noah E. Wolfe}}
-
-newolfe@ncsu.edu\ \ \textbullet
-\ \ (704) 998-1322
-\\
-\end{center}
+\vskip -\margin \vskip \headerheight
 
 %%% Education
 \cvheader{Education}

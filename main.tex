@@ -1,0 +1,222 @@
+\documentclass[8pt]{article}
+
+% Imports
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}[skip=0.5] % adds space between paragraphs, and also aligns items left
+\usepackage{tikz} % for shapes and fancy graphics
+
+\usepackage{calc} % for subtracting lengths/widths
+
+\usepackage{xparse}
+
+% TODO: reconsider margins
+\usepackage[a4paper,margin=0.5in]{geometry} %a4paper sets margins, can add showframe to display guidelines
+
+\pagenumbering{gobble}
+
+% Define some TiKz colors
+\definecolor{spacecadet}{HTML}{1D2951}
+\definecolor{slategray}{HTML}{708090}
+\definecolor{darkslategray}{HTML}{2f4f4f }
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+
+% Env. variables
+\def \primarycolor   {spacecadet}
+\def \secondarycolor {darkslategray}
+\def \tertiarycolor  {airforceblue} % may use a color just a touch lighter
+
+\def \titlerectmin{0.15cm}
+\def \titlerectmax{0.35cm}
+\def \leftcolwidth{3.05cm}
+
+\newcommand{\CPP}
+{C\nolinebreak[4]\hspace{-.05em}\raisebox{.22ex}{\footnotesize\bf ++}}
+
+% Section commands
+\newcommand{\htop}[1]{\textbf{#1}}
+\newcommand{\hsub}[1]{#1}
+\newcommand{\hextra}[1]{#1}
+
+% Item commands
+\newcommand{\cvheader}[1]{
+    \tikz{\fill [\primarycolor] (0,\titlerectmin) rectangle (\leftcolwidth,\titlerectmax);} \ 
+    \textcolor{\primarycolor}{ \large{\textbf{#1}} } 
+}
+
+\newcommand{\cvsubtitle}[1]{
+    \hspace{\leftcolwidth} \ \textcolor{\secondarycolor}{ \large{{#1}} }
+}
+
+% note-- this will override the cventry command in the moderncv package
+\newcommand{\cventry}[4]{
+    \begin{minipage}[t]{\leftcolwidth} 
+        \small{
+            \begin{flushright}
+                #2\\
+                \textcolor{\tertiarycolor}{\textit{#4}}
+            \end{flushright}
+        }
+    \end{minipage} \ \
+    \begin{minipage}[t]{\linewidth-\leftcolwidth} \normalsize{\textbf{#1} \\ #3} \end{minipage}
+} % args - title, dates, desc., website
+
+\newcommand{\cventrysingle}[3]{
+    \begin{minipage}[t]{\leftcolwidth} \small{#2 \begin{flushleft}\textcolor{\tertiarycolor}{\textit{#3}} \end{flushleft} } 
+    \end{minipage} \ \
+    \begin{minipage}[t]{\linewidth-\leftcolwidth} \normalsize{{#1}} \end{minipage}
+}
+
+% Misc. Commands
+
+\begin{document}
+
+%\parskip=0.75em
+
+\begin{center}
+{\LARGE \textbf{Noah E. Wolfe}}
+
+newolfe@ncsu.edu\ \ \textbullet
+\ \ (704) 998-1322
+\\
+\end{center}
+
+%%% Education
+\cvheader{Education}
+
+\cventry{Physics B.S. (ongoing)}{Aug 2018 - May 2022}{Relevant coursework includes: 
+    \begin{itemize}
+        \item{Introduction to Scientific Computing}
+        \item{University Physics I, II, \& III}
+        \item{Mechanics I}
+        \item{Thermal Physics}
+    \end{itemize}
+}{physics.ncsu.edu}
+
+
+\cventry{Mathematics B.S. (ongoing)}{May 2019 - May 2022}{Relevant coursework includes:
+    \begin{itemize}
+        \item{Introduction to Linear Algebra}
+        \item{Applied Differential Equations I (ODEs)}
+        \item{Applied Differential Equations II (PDEs)}
+        \item{Introduction to Modern Algebra}
+        \item{Introduction to Complex Variables (graduate level course)}
+        \item{Uncertainty Quantification in Physical and Biological Models (graduate level course)} %hehe honk honk%
+    \end{itemize}
+}{math.ncsu.edu}
+
+%%% Research
+\cvheader{Research}
+
+\cvsubtitle{Publications}
+
+\cventrysingle{Wolfe, N. E., Fr\"ohlich, C., et al. (2020). PUSHing core-collapse supernovae to explosions in spherical symmetry VI: Gravitational Wave Eigenfrequencies. Manuscript in preparation.}{}{}
+
+\cvsubtitle{Presentations}
+
+\cventrysingle{Wolfe, N. E., Curtis, S., Ghosh, S., Fr\"ohlich, C. “Characterizing Gravitational Wave Signals from Core-Collapse Supernovae,” McCormick Undergraduate Research Symposium, Raleigh, NC, May 2020 (Talk)}{}{}
+
+\cventrysingle{Wolfe, N. E., Curtis, S., Ghosh, S., Ebinger, K., Fr\"ohlich, C. “Characterizing Gravitational Wave Signals from Core-Collapse Supernovae,” American Physical Society Division of Nuclear Physics, Crystal City, VA, October 2019 (Poster)}{}{}
+
+\cventrysingle{Wolfe, N. E., Curtis, S., Ghosh, S., Fr\"ohlich, C. “Characterizing Gravitational Wave Signals from Core-Collapse Supernovae,” Fifty-One Ergs, Raleigh, NC, May 2019 (Poster)}{}{}
+
+\cventrysingle{Wolfe, N. E., Kashani, S., Stuard, S., Gadisa, A., Ade, H. "Extraction of Exciton Binding Energy from the Stark Effect," McCormick Undergraduate Research Symposium, Raleigh, NC, April 2019 (Poster)}{}{}
+
+% Projects
+\cvsubtitle{Projects}
+
+\cventry{Characterizing Gravitational Wave Signals from Core-Collapse Supernovae}{Oct 2018 - Present}
+{Work and Highlights:
+    \begin{itemize}
+        \item{Modification and extension of 1-D Core-Collapse models written in FORTRAN.}
+        \item{Investigation and calculation of a unique, single value to characterize the gravitational wave signal produced by a simulated supernova.}
+        \item{Modification and extension of code to calculate gravitational wave eigenfrequencies given hydrodynamic data from a simulated supernova.}%%clown, glad u found this%%
+        \item{1-Minute "Poster-Blitz Advertisement" and poster presentation at Fifty-One Ergs (FOE) in May 2019}
+    \end{itemize}
+}{with Associate Professor Carla Fr\"ohlich, NC State}
+
+\cventry{Investigating Neutral Hydrogen in the Cold Accretion Disk around Sagittarius A*}{June 2019 - Present}
+{Using observations from the Atacama Large Millimeter/submillimeter Array, I am working to determine if neutral hydrogen is present in the cold accretion disk recently discovered around Sagittarius A*. I am also working on the problem of describing the transition of hydrogen from n = 31 to n = 30, in the environment around a black hole, in the presence of significant background radiation. This project began with a conversation following a presentation by Dr. Murchikova at NC State.
+}{with Bezos Member Elena Murchikova, Institute for Advanced Study}
+
+\cventry{Gravitational Wave Waveforms from 1-D Models of Core-Collapse Supernovae}{May 2019 - Present}
+{Using the characterization of the gravitational wave signals from my work with Professor Fr\"ohlich, I am working to produce gravitational wave signal "templates" that will make it easier to detect these signals from core-collapse supernovae. This project grew out of discussions at Fifty-One Ergs in May 2019.}{with Postdoctoral Fellow Sarah Gossan, CITA}
+
+\cventry{Optical Simulation of Organic Photovoltaic Devices}{Aug 2018 - July 2019}{
+Wrote optical simulations, in Python, to model light transmission through organic photovoltaic devices and calculating the change in exciton binding energy when exposed to an external electric field (Stark Effect).
+}{with Reserach Professor Abay Dinku, NC State}
+\\
+%%% Service
+\cvheader{Service \& Leadership}
+
+\cventry{\underline{President}, Astronomy Club at NC State}{May 2019 - Present}{As President, I am guiding the club towards a focus on science outreach; we have already participated in multiple outreach events in Raleigh, and are planning further outreach events remotely during the summer of 2020.}{}
+
+\cventry{\underline{Co-Chair}, Park Scholars Class of 2022 Legacy Committee}{Sep 2018 - Present}{The goal of this committee is to define and implement a class legacy for the Park Scholars Class of 2022; as co-chair, I have guided this interdisciplinary committee in harnessing the wide-ranging interests and expertise of our class towards addressing issues related to STEM education in disadvantaged North Carolinian communities.}{}
+
+% Check these dates-- also steal title and desc. from prev. cv
+\cventry{Low-Cost Air Quality Monitor Mesh Networks}{June 2015 - Present}{Designing and building low cost air quality monitor mesh networks, aimed at collecting data in southeastern North Carolina; a region plagued by severe environmental justice issues caused by air pollution, where long-term air quality data does not currently exist.
+}{go.ncsu.edu/aq-cei \\ code @ git.io/fjQy5}
+
+\cventry{Small-Group Leader, Triangle Youth Leadership Conference}{January 2020}{Volunteer small-group leader at the Triangle Youth Leadership Conference, which brings high school students from across North Carolina to an intensive, two-day conference wherein they learn effective leadership in the context of solving community issues. As small-group leader, I will encourage bonding, teamwork, and the development of critical leadership skills among my group, as I guide these students in the development and presentation of a service prototype project.
+}
+{triangleleadership.com}
+
+\cventry{Alternative Service Break - Alaska}{March 2020}{During spring break 2020, I will travel to the Tlingit-majority community of Hoonah, Alaska, to understand the roots of social injustice in Native American communities through the lens of intense, focused service during this time. I will be volunteering at the local school and Boys \& Girls Club, particularly focusing my understanding of social justice in this environment through education. This is particularly relevant to my future career goals, as I want to be an effective mentor to a diverse body of students in a university setting.
+}{}
+
+\cvheader{Outreach Events}
+
+\cventry{Athens Drive Magnet High School}{}{}{}
+
+\cvheader{Grants \& Funding}
+
+% add link to something that shows Scivir got the sustainability grant
+\cventry{NC State Office of Undergraduate Research Award}{April 2020}{Awarded \$2,000 to perform research with Dr. Elena Murchikova at the Institute for Advanced Study during the summer of 2020. Status of funding currently uncertain due to COVID-19 pandemic.}{}
+
+\cventry{NC State Sustainability Fund Grant}{April 2020}{Awarded \$5,820 to deploy a network of outdoor particulate matter sensors across NC State's campus, from July 2020 to June 2021.}{}
+
+\cvheader{Awards \& Honors}
+
+\cventry{Park Scholarships}{Aug 2018 - Present}{NC State University's Park Scholarship is a highly selective, full merit scholarship awarded on the basis of outstanding accomplishments and potential in scholarship, leadership, service, and character. As a Park Scholar, I am participating in a four-year, executive-style leadership academy; diversity training; a year-long civic engagement project; and intensive learning laboratories exploring leadership challenges regionally and nationally.}{park.ncsu.edu}
+
+\cventry{University Scholars Program}{Aug 2018 - Present}{The University Scholars Program (USP) at NC State exposes students to a diverse experiences and perspectives. Through this program, I have engaged in activities including: learned basic orienteering at Raleigh’s Lake Crabtree, critically discussed the Frontline documentary “Left Behind Amierca”, and listened to a talk by a National Geographic photojournalist.}{scholars.dasa.ncsu.edu}
+
+\cventry{Conference Experience for Undergraduates}{October 2019}{Awarded participation in the Conference Experience for Undergraduates (CEU) at the APS Division of Nuclear Physics meeting. The goal of CEU is to provide a capstone conference experience for undergraduate students who have conducted research in nuclear science by providing them the opportunity to present their research to the larger professional community and to one another.}{uwlax.edu/ceu}
+
+\cventry{Goldwater Scholarship}{April 2020}{The Goldwater Scholarship Program, one of the oldest and most prestigious national scholarships in the natural sciences, engineering and mathematics in the United States, seeks to identify and support college sophomores and juniors who show exceptional promise of becoming this Nation’s next generation of research leaders in these fields. \\
+
+The characteristics the Foundation seeks in a Goldwater Scholar include:
+
+    • strong commitment to a research career in the natural sciences, mathematics and engineering,
+
+    • effective display of intellectual intensity in the sciences, mathematics and engineering, and
+
+    • potential for a significant future contribution to research in his/her chosen field.
+}{lnnk.in/@goldwater-interview}
+
+\cventry{2nd Place - McCormick Undegraduate Physics Research Symposium}{May 2020}{Won 2nd place for my three-minute, three-slide presentation of my work Characterizing Gravitational Waves from Core-Collapse Supernovae at the NC State McCormick Undergraduate Physics Research Symposium.}{}
+
+\cventry{Phi Beta Kappa}{May 2020}{Invited to join Phi Beta Kappa, the oldest and best known society for recognition of academic excellence and scholarly achievement in the United States. Election to membership in Phi Beta Kappa is one of the highest honors that students can earn at NC State University.}{pbk.org}
+
+\cvheader{Skills}
+
+\begin{description*}
+	\item{
+	\textbf{Programming:} Python (Advanced, incl. Scipy and NumPy), C and \CPP (Intermediate), Java (Intermediate), general Unix/Linux proficiency (Ubuntu, CentOS, Raspbian), Mathematica (Intermediate), MatLab (Fundamental), MongoDB (Fundamental), PostgreSQL (Intermediate), HTML and template engines incl. ejs (Advanced), JavaScript and node.js (Advanced), HDF5 (Advanced), MPICH (Fundamental), Machine Learning with Python Keras library (Fundamental)
+	}
+	
+	\item{
+	\textbf{Other Technical Experience:} Soldering/electronics (Intermediate), Arduino Uno, Raspberry Pi, \LaTeX (Intermediate)
+	}
+	
+	\item{
+	\textbf{Languages:} English (native), Gujarati (Fundamental), Spanish (Fundamental)
+	}
+	
+\end{description*}
+
+\iffalse
+%%% Biosketch -- maybe put this on it's own page
+Noah Wolfe is an undergraduate student and Park Scholar pursuing degrees in both Physics and Mathematics at North Carolina State University (NC State). His work thus far has combined his talent for programming with his love of astrophysics, as he has studied core-collapse supernovae, neutron stars, and gravitational waves with state-of-the-art simulations. However, his astrophysical research interests are not limited to the theoretical; he has recently become involved in a project to study the environment surrounding Sagittarius A* with ALMA observations. Noah also strongly believes in serving his communities. As President of the Astronomy Club, he has lead scientific outreach events both on-campus and in the greater Raleigh community. He has also lead the development of low-cost air quality sensor networks, in order to collect air quality data in rural, socioeconomically disadvantaged regions of North Carolina where this data does not currently exist. In his free time, Noah enjoys playing the drum set, baking vegan desserts, hiking, and reading sci-fi novels. 
+\fi
+
+\end{document}

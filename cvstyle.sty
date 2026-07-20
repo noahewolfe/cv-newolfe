@@ -1,0 +1,93 @@
+\ProvidesPackage{cvstyle}
+
+% Imports
+\usepackage[utf8]{inputenc}
+% bock bock embryo roll
+\usepackage{enumitem}
+
+\usepackage{fontawesome}
+
+\usepackage{hyperref}
+
+\usepackage{helvet}
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+
+
+\usepackage{parskip}[skip=0.5] % adds space between paragraphs, and also aligns items left
+\usepackage{tikz} % for shapes and fancy graphics
+
+\usepackage{calc} % for subtracting lengths/widths
+
+\usepackage{xparse}
+
+% TODO: reconsider margins
+\usepackage[a4paper,margin=0.5in]{geometry} %a4paper sets margins, can add showframe to display guidelines
+
+\pagenumbering{gobble}
+
+% Define some TiKz colors
+\definecolor{spacecadet}{HTML}{1D2951}
+\definecolor{slategray}{HTML}{708090}
+\definecolor{darkslategray}{HTML}{2f4f4f }
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+
+% Env. variables
+\def \primarycolor   {spacecadet}
+\def \secondarycolor {darkslategray}
+\def \tertiarycolor  {airforceblue} % may use a color just a touch lighter
+
+\def \titlerectmin{0.15cm}
+\def \titlerectmax{0.35cm}
+\def \leftcolwidth{3.05cm}
+\def \rightcolwidth{10cm}
+
+\newcommand{\CPP}
+{C\nolinebreak[4]\hspace{-.05em}\raisebox{.22ex}{\footnotesize\bf ++}}
+
+% Section commands
+\newcommand{\htop}[1]{\textbf{#1}}
+\newcommand{\hsub}[1]{#1}
+\newcommand{\hextra}[1]{#1}
+
+% Item commands
+\newcommand{\cvheader}[1]{
+    \tikz{\fill [\primarycolor] (0,\titlerectmin) rectangle (\leftcolwidth,\titlerectmax);} \ 
+    \textcolor{\primarycolor}{ \large{\textbf{#1}} } 
+}
+
+\newcommand{\cvsubtitle}[1]{
+    \hspace{\leftcolwidth} \ \textcolor{\secondarycolor}{ \large{{#1}} }
+}
+
+% note-- this will override the cventry command in the moderncv package
+\newcommand{\cventry}[4]{
+    \begin{minipage}[t]{\leftcolwidth} 
+        \small{
+            \begin{flushright}
+                #2\\
+                \textcolor{\tertiarycolor}{\textit{#4}}
+            \end{flushright}
+        }
+    \end{minipage} \ \
+    \begin{minipage}[t]{\linewidth-\leftcolwidth} \normalsize{\textbf{#1} \\ #3} \end{minipage}
+} % args - title, dates, desc., website
+
+\newcommand{\cventrysingle}[3]{
+    \begin{minipage}[t]{\leftcolwidth} \small{#2 \begin{flushleft}\textcolor{\tertiarycolor}{\textit{#3}} \end{flushleft} } 
+    \end{minipage} \ \
+    \begin{minipage}[t]{\linewidth-\leftcolwidth} \normalsize{{#1}} \end{minipage}
+}
+
+\newcommand{\cvskill}[3]{
+    \begin{minipage}[t]{\linewidth-\rightcolwidth} \normalsize{{#1}} \end{minipage} \ \
+    \begin{minipage}[t]{\rightcolwidth} \small{ \begin{flushright}  \textcolor{\tertiarycolor}{\textit{#3}} (#2) \end{flushright} } 
+    \end{minipage}
+} % args - skill name, rating, length
+
+
+% Misc. Commands
+\def\code#1{\texttt{#1}}
+
+
+\setlist[itemize]{leftmargin=5.5mm}
